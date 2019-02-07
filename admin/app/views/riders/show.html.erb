@@ -1,0 +1,30 @@
+<h1> Rider </h1>
+<p>
+  <strong>Name:</strong>
+  <%= @rider.name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @rider.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @rider.email %>
+</p>
+
+<p>
+  <strong>Tokens:</strong>
+  <%= @rider.tokens %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @rider.address %>
+</p>
+
+<%= link_to 'Edit', edit_rider_path(@rider) %> |
+<%= link_to 'Back', riders_path %>
+
+
