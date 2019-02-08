@@ -70,3 +70,6 @@ gem 'rack-cors', :require => 'rack/cors'
 
 #seralizer
 gem 'grape-active_model_serializers'
+
+#api documentation
+gem 'grape-swagger'

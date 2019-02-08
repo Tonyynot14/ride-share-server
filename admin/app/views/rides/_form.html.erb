@@ -1,0 +1,91 @@
+<%= form_with(model: @ride, local: true) do |form| %>
+
+
+  <% if @ride.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@ride.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @ride.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <p>
+    <%= form.label :rider_id %><br>
+    <%= form.text_field :rider_id %>
+  </p>
+
+  <p>
+    <%= form.label :driver_id %><br>
+    <%= form.text_field :driver_id %>
+  </p>
+
+  <p>
+    <%= form.label :pick_up_time %><br>
+    <%= form.text_field :pick_up_time %>
+  </p>
+
+  <p>
+    <%= form.label :start_street %><br>
+    <%= form.text_field :start_street %>
+  </p>
+
+  <p>
+    <%= form.label :start_city %><br>
+    <%= form.text_field :start_city %>
+  </p>
+
+  <p>
+    <%= form.label :start_state %><br>
+    <%= form.text_field :start_state %>
+  </p>
+
+  <p>
+    <%= form.label :start_zip %><br>
+    <%= form.text_field :start_zip %>
+  </p>
+
+  <p>
+    <%= form.label :end_street %><br>
+    <%= form.text_field :end_street %>
+  </p>
+
+  <p>
+    <%= form.label :end_city %><br>
+    <%= form.text_field :end_city %>
+  </p>
+
+  <p>
+    <%= form.label :end_state %><br>
+    <%= form.text_field :end_state %>
+  </p>
+
+  <p>
+    <%= form.label :end_zip %><br>
+    <%= form.text_field :end_zip %>
+  </p>
+
+  <p>
+    <%= form.label :reason %><br>
+    <%= form.text_field :reason %>
+  </p>
+
+  <p>
+    <%= form.label :status %><br>
+    <%= form.text_field :status %>
+  </p>
+
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+
+<% end %>

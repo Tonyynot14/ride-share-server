@@ -1,0 +1,47 @@
+
+<h1>Listing Rides</h1>
+
+<%= link_to 'New Ride', new_ride_path %>
+<table>
+  <tr>
+    <th>Rider ID</th>
+    <th>Driver ID</th>
+    <th>Pick Up Time</th>
+    <th>Start Street</th>
+    <th>Start City</th>
+    <th>Start State</th>
+    <th>Start Zip</th>
+    <th>End Street</th>
+    <th>End City</th>
+    <th>End State</th>
+    <th>End Zip</th>
+    <th>Reason</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+
+  <% @rides.each do |ride| %>
+    <tr>
+      <td><%= ride.rider_id %></td>
+      <td><%= ride.driver_id %></td>
+      <td><%= ride.pick_up_time %></td>
+      <td><%= ride.start_street %></td>
+      <td><%= ride.start_city %></td>
+      <td><%= ride.start_state %></td>
+      <td><%= ride.start_zip %></td>
+      <td><%= ride.end_street %></td>
+      <td><%= ride.end_city %></td>
+      <td><%= ride.end_state %></td>
+      <td><%= ride.end_zip %></td>
+      <td><%= ride.reason %></td>
+      <td><%= ride.status %></td>
+      <td><%= link_to 'Show', ride_path(ride) %></td>
+      <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
+      <td><%= link_to 'Destroy', ride_path(ride),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Back', welcome_index_path %>

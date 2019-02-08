@@ -1,0 +1,73 @@
+<h1>Ride</h1>
+<p>
+  <strong>Rider ID:</strong>
+  <%= @ride.rider_id %>
+</p>
+
+<p>
+  <strong>Driver ID:</strong>
+  <%= @ride.driver_id %>
+</p>
+
+
+<p>
+  <strong>Pick Up Time:</strong>
+  <%= @ride.pick_up_time %>
+</p>
+
+<p>
+  <strong>Start Street:</strong>
+  <%= @ride.start_street %>
+</p>
+
+<p>
+  <strong>Start City:</strong>
+  <%= @ride.start_city%>
+</p>
+
+<p>
+  <strong>Start State:</strong>
+  <%= @ride.start_state%>
+</p>
+
+
+<p>
+  <strong>Start Zip:</strong>
+  <%= @ride.start_zip %>
+</p>
+
+<p>
+  <strong>End Street:</strong>
+  <%= @ride.end_street %>
+</p>
+
+<p>
+  <strong>End City:</strong>
+  <%= @ride.end_city %>
+</p>
+
+
+<p>
+  <strong>End State:</strong>
+  <%= @ride.end_state %>
+</p>
+
+<p>
+  <strong>End Zip:</strong>
+  <%= @ride.end_zip %>
+</p>
+
+<p>
+  <strong>Ride Reason:</strong>
+  <%= @ride.reason %>
+</p>
+
+<p>
+  <strong>Ride Status:</strong>
+  <%= @ride.status %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_ride_path(@ride) %> |
+<%= link_to 'Back', rides_path %>
