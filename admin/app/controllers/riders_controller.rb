@@ -17,7 +17,7 @@ class RidersController < ApplicationController
 
 
   def create
-    @rider = Rider.new(params.require(:rider).permit(:name, :phone, :email, :tokens, :address))
+    @rider = Rider.new(rider_params)
 
     if @rider.save
       redirect_to @rider
@@ -52,7 +52,7 @@ class RidersController < ApplicationController
 
   private
   def rider_params
-    params.require(:rider).permit(:name, :phone, :email, :tokens, :address)
+    params.require(:rider).permit(:first_name, :last_name, :phone, :email, :tokens, :address)
   end
 
 end

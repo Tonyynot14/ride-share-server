@@ -13,18 +13,21 @@
 ActiveRecord::Schema.define(version: 2019_02_07_044610) do
 
   create_table "drivers", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
     t.string "phone"
     t.string "email"
     t.string "car_make"
     t.string "car_model"
     t.string "car_color"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "riders", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
     t.string "phone"
     t.string "email"
     t.integer "tokens"
