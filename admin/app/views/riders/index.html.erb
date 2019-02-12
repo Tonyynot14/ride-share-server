@@ -4,6 +4,7 @@
 <%= link_to 'New Rider', new_rider_path %>
 <table>
   <tr>
+    <th>ID</th>
     <th>First Name</th>
     <th>Last Name</th>
     <th>Phone</th>
@@ -15,6 +16,7 @@
 
   <% @riders.each do |rider| %>
     <tr>
+      <td><%= rider.id %></td>
       <td><%= rider.first_name %></td>
       <td><%= rider.last_name %></td>
       <td><%= rider.phone %></td>
