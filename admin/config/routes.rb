@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :drivers
   resources :riders
   resources :rides
+  resources :organizations
 
 
   root 'welcome#index'
