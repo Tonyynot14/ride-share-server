@@ -19,3 +19,10 @@ Rider.create(first_name: "Jim", last_name: "Free" , phone: "9223842200", tokens:
 
 Organization.create(name: "Durham Rescue Mission", street: "507 E Knox", city: "Durham", state: "NC", zip: "27705")
 Organization.create(name: "Urban Ministries of Durham", street: "410 Liberty Street", city: "Durham", state: "NC", zip: "27705")
+
+Ride.create(rider_id: "1" , driver_id: "1" , pick_up_time: "2/22/19 10:20:00" ,  start_street: "394 Alexander" , start_city: "Durham" , start_state: "NC", start_zip: "27708", end_street: "840 Hillsborough" , end_city: "Durham", end_state: "NC", end_zip: "27705", reason: "Interview", status: "matched")
+Ride.create(rider_id: "2" , driver_id: "1" , pick_up_time: "2/26/19 12:00:00" ,  start_street: "1830 Pacific Ave" , start_city: "Durham" , start_state: "NC", start_zip: "27708", end_street: "2200 Erwin" , end_city: "Durham", end_state: "NC", end_zip: "27705", reason: "Doctor's appointment", status: "requested")
+Ride.create(rider_id: "3" , driver_id: "2" , pick_up_time: "2/26/19 08:30:00" ,  start_street: "394 Broadway Ave" , start_city: "Durham" , start_state: "NC", start_zip: "27708", end_street: "203 Club Ave." , end_city: "Durham", end_state: "NC", end_zip: "27705", reason: "Haircut", status: "requested")
+Ride.create(rider_id: "4" , driver_id: "3" , pick_up_time: "2/26/19 08:30:00" ,  start_street: "293 Erwin" , start_city: "Durham" , start_state: "NC", start_zip: "27708", end_street: "2938 Main Street" , end_city: "Durham", end_state: "NC", end_zip: "27705", reason: "Teacher Conference", status: "completed")
+
+
