@@ -3,20 +3,23 @@ module API
     class Drivers < Grape::API
       include API::V1::Defaults
 
-      resource :drivers do
+
         desc "Return all riders"
-        get "", root: :drivers do
-          Driver.all
+        params do
+          requires :organization_id, type: String
         end
-      end
+        get ":org_id/drivers", root: :driver do
+          Driver.where(organization_id:  permitted_params[:organization_id])
+        end
+
 
       desc "Return a driver"
       params do
-        requires :id, type: String, desc: "ID of the
-            driver"
+        requires :id, type: String
+        requires :organization_id, type: String
       end
-      get "driver/:id", root: :driver do
-        Driver.where(id: permitted_params[:id]).first!
+      get ":org_id/drivers/:id", root: :driver do
+        Driver.where(organization_id:  permitted_params[:organization_id], id: permitted_params[:id]).first!
       end
      end
   end
