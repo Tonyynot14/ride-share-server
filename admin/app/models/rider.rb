@@ -5,7 +5,7 @@ class Rider < ApplicationRecord
   validates :email, presence: true
 
   belongs_to :organization
-  has_many :tokens
+  has_many :tokens, dependent: :destroy
   has_many :riders
 
 end
