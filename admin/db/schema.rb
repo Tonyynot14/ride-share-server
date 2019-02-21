@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_162831) do
+ActiveRecord::Schema.define(version: 2019_02_19_203053) do
 
   create_table "drivers", force: :cascade do |t|
     t.integer "organization_id"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 2019_02_18_162831) do
     t.string "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "recurring_patterns", force: :cascade do |t|
+    t.integer "schedule_window_id"
+    t.integer "day_of_week"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["schedule_window_id"], name: "index_recurring_patterns_on_schedule_window_id"
   end
 
   create_table "riders", force: :cascade do |t|
@@ -69,6 +77,16 @@ ActiveRecord::Schema.define(version: 2019_02_18_162831) do
     t.index ["driver_id"], name: "index_rides_on_driver_id"
     t.index ["organization_id"], name: "index_rides_on_organization_id"
     t.index ["rider_id"], name: "index_rides_on_rider_id"
+  end
+
+  create_table "schedule_windows", force: :cascade do |t|
+    t.integer "driver_id"
+    t.date "start_date"
+    t.date "end_date"
+    t.time "start_time"
+    t.time "end_time"
+    t.boolean "is_recurring"
+    t.index ["driver_id"], name: "index_schedule_windows_on_driver_id"
   end
 
   create_table "tokens", force: :cascade do |t|
