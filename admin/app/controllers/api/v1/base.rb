@@ -6,6 +6,8 @@ module API
       mount API::V1::Drivers
       mount API::V1::Riders
       mount API::V1::Rides
+      # mount API::V1::ScheduleWindow
+      # mount API::V1::RecurringPattern
       # mount API::V1::AnotherResource
 
       add_swagger_documentation(

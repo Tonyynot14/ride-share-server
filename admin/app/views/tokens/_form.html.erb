@@ -1,0 +1,51 @@
+<%= form_with(model: @token, local: true) do |form| %>
+
+
+  <% if @token.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@token.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @token.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <p>
+    <%= form.label :rider_id %><br>
+    <%= form.text_field :rider_id %>
+  </p>
+
+  <p>
+    <%= form.label :created_at %><br>
+    <%= form.text_field :created_at %>
+  </p>
+
+  <p>
+    <%= form.label :expires_at %><br>
+    <%= form.text_field :expires_at %>
+  </p>
+
+  <p>
+    <%= form.label :used_at %><br>
+    <%= form.text_field :used_at %>
+  </p>
+
+  <p>
+    <%= form.label :valid %><br>
+    <%= form.text_field :is_valid %>
+  </p>
+
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+
+<% end %>

@@ -1,5 +1,5 @@
 class RiderSerializer < ActiveModel::Serializer
 
-  attributes :id, :first_name, :last_name, :phone,
-             :email, :tokens, :address
+  attributes :organization_id, :id, :first_name, :last_name, :phone,
+             :email, :address
 end

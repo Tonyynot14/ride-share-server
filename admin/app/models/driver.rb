@@ -3,4 +3,7 @@ class Driver < ApplicationRecord
   validates :last_name, presence: true
   validates :phone, presence: true
   validates :email, presence: true
+
+  belongs_to :organization
+  has_many :rides
 end

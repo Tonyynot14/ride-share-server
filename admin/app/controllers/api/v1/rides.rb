@@ -16,7 +16,7 @@ module API
         requires :id, type: String, desc: "ID of the
             ride"
       end
-      get "ride/:id", root: :ride do
+      get "rides/:id", root: :ride do
         Ride.where(id: permitted_params[:id]).first!
       end
     end
