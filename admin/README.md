@@ -1,24 +1,430 @@
-# README
+# API Documentation
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- [Authentication](#authentication)
+- [Settings](#settings)
+- [Locations](#locations)
+- [Availability](#availability)
+- [Rides](#rides)
 
-Things you may want to cover:
+### Authentication
 
-* Ruby version
+**TODO**
 
-* System dependencies
+### Settings
 
-* Configuration
+**TODO**
 
-* Database creation
+### Locations
 
-* Database initialization
+<details>
+<summary>GET /locations</summary>
+**Description:**
 
-* How to run the test suite
+Return all locations saved by the user.
 
-* Services (job queues, cache servers, search engines, etc.)
+**Response Example:**
+```json
+[
+  {
+    "id": 1,
+    "street_address": "123 Pine St.",
+    "city": "Durham",
+    "state": "NC",
+    "zip": "27609"
+  },
+  {
+    "id": 2,
+    "street_address": "123 Oak St.",
+    "city": "Durham",
+    "state": "NC",
+    "zip": "27609"
+  },
+]
+```
+</details>
 
-* Deployment instructions
 
-* ...
+<details>
+<summary>POST /locations</summary>
+
+**Description:**
+
+Save a location for future use.
+
+**Request Body:**
+
+```json
+{
+  "street_address": "123 Oak St.",
+  "city": "Durham",
+  "state": "NC",
+  "zip": "27609"
+}
+```
+
+**Response:**
+```json
+{
+  "id": 3,
+  "street_address": "123 Oak St.",
+  "city": "Durham",
+  "state": "NC",
+  "zip": "27609"
+}
+```
+
+</details>
+
+
+<details>
+<summary>DELETE /locations/:id</summary>
+
+**Description:**
+
+Deletes an address from the list of saved addresses.
+
+**Response:**
+
+{ success: true }
+</details>
+
+
+### Availability
+
+<details>
+<summary>GET /availabilities</summary>
+**Description:**
+
+Returns an array with all the scheduled available time slots within the given range.
+
+**Params:**
+
+- `start`: timestamp where range begins
+- `end`: timestamp where range ends
+
+**Response Example:**
+```json
+[
+  {
+    "id": 1,
+    "start": "2019-02-07 18:00",
+    "end": "2019-02-07 20:00",
+    "recurring": true,
+    "location": {
+      "street_address": "123 Pine St.",
+      "city": "Durham",
+      "state": "NC",
+      "zip": "27609"
+    }
+  },
+  {
+    "id": 2,
+    "start": "2019-02-08 18:00",
+    "end": "2019-02-08 20:00",
+    "recurring": false,
+    "location": {
+      "street_address": "123 Pine St.",
+      "city": "Durham",
+      "state": "NC",
+      "zip": "27609"
+    }
+  },
+  {
+    "id": 1,
+    "start": "2019-02-14 18:00",
+    "end": "2019-02-14 20:00",
+    "recurring": true,
+    "location": {
+      "street_address": "123 Pine St.",
+      "city": "Durham",
+      "state": "NC",
+      "zip": "27609"
+    }
+  },
+]
+```
+</details>
+
+
+<details>
+<summary>POST /availabilities</summary>
+
+**Description:**
+
+Save a new availability
+
+**Request Body:**
+
+```json
+{
+  "start": "2019-02-14 18:00",
+  "end": "2019-02-14 20:00",
+  "recurring": true,
+  "location": {
+    "street_address": "123 Pine St.",
+    "city": "Durham",
+    "state": "NC",
+    "zip": "27609"
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "id": 6,
+  "start": "2019-02-14 18:00",
+  "end": "2019-02-14 20:00",
+  "recurring": true,
+  "location": {
+    "street_address": "123 Pine St.",
+    "city": "Durham",
+    "state": "NC",
+    "zip": "27609"
+  }
+}
+```
+</details>
+
+<details>
+<summary>PUT /availabilities/:id</summary>
+
+**Description:**
+
+Update an existing availability
+
+**Request Body:**
+
+```json
+{
+  "id": 6,
+  "start": "2019-02-14 18:00",
+  "end": "2019-02-14 20:00",
+  "recurring": true,
+  "location": {
+    "street_address": "123 Pine St.",
+    "city": "Durham",
+    "state": "NC",
+    "zip": "27609"
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "id": 6,
+  "start": "2019-02-14 18:00",
+  "end": "2019-02-14 20:00",
+  "recurring": true,
+  "location": {
+    "street_address": "123 Pine St.",
+    "city": "Durham",
+    "state": "NC",
+    "zip": "27609"
+  }
+}
+```
+</details>
+
+
+
+<details>
+<summary>DELETE /locations/:id</summary>
+
+**Description:**
+
+Removes an availability
+
+**Response:**
+
+{ success: true }
+
+</details>
+
+
+### Rides
+
+<details>
+<summary>GET /rides</summary>
+**Description:**
+
+Returns an array with all the rides within a given range
+
+**Params:**
+
+- `start`: ***optional*** timestamp where range begins
+- `end`: ***optional*** timestamp where range ends
+- `states`: ***optional*** list of states the rides are in
+
+***Possible States:***
+
+- `pending`: request has been made but has not been approved by the organization
+- `approved`: request has been approved and drivers alerted about ride
+- `scheduled`: request has been matched with a driver and scheduled
+- `picking-up`: driver has started driving to pick up rider (discuss)
+- `dropping-off`: driver has picked up rider and is driving to final destination (discuss)
+- `completed`: driver has dropped of rider at final destination
+- `canceled`: driver or rider has canceled the ride
+
+
+**Response Example:**
+`GET /api/v1/rides?start=2019-01-01&end=2019-02-01&states=approved,scheduled`
+```json
+[
+  {
+    "id": 1,
+    "pickupTime": "2019-02-07 18:00",
+    "riderName": "John Smith",
+    "riderPhone": "919-123-4567",
+    "state": "scheduled",
+    "pickupLocation": {
+      "street_address": "123 Pine St.",
+      "city": "Durham",
+      "state": "NC",
+      "zip": "27609"
+    },
+    "dropoffLocation": {
+      "street_address": "124 Pine St.",
+      "city": "Durham",
+      "state": "NC",
+      "zip": "27609"
+    }
+  },
+  {
+    "id": 2,
+    "pickupTime": "2019-02-07 18:00",
+    "riderName": "Amy Smith",
+    "riderPhone": "919-123-4568",
+    "state": "approved",
+    "pickupLocation": {
+      "street_address": "124 Pine St.",
+      "city": "Durham",
+      "state": "NC",
+      "zip": "27609"
+    },
+    "dropoffLocation": {
+      "street_address": "123 Pine St.",
+      "city": "Durham",
+      "state": "NC",
+      "zip": "27609"
+    }
+  },
+]
+```
+</details>
+
+
+<details>
+<summary>POST /rides/:id/accept</summary>
+
+**Description:**
+
+Driver accepts the ride
+
+**Request Body:**
+
+```json
+{
+}
+```
+
+**Response:**
+```json
+{
+  "id": 2,
+  "pickupTime": "2019-02-07 18:00",
+  "riderName": "Amy Smith",
+  "riderPhone": "919-123-4568",
+  "state": "scheduled",
+  "pickupLocation": {
+    "street_address": "124 Pine St.",
+    "city": "Durham",
+    "state": "NC",
+    "zip": "27609"
+  },
+  "dropoffLocation": {
+    "street_address": "123 Pine St.",
+    "city": "Durham",
+    "state": "NC",
+    "zip": "27609"
+  }
+}
+```
+</details>
+
+<details>
+<summary>POST /rides/:id/complete</summary>
+
+**Description:**
+
+Driver complete the ride
+
+**Request Body:**
+In the future we might want to get feedback from the driver here.
+```json
+{
+}
+```
+
+**Response:**
+```json
+{
+  "id": 2,
+  "pickupTime": "2019-02-07 18:00",
+  "riderName": "Amy Smith",
+  "riderPhone": "919-123-4568",
+  "state": "complete",
+  "pickupLocation": {
+    "street_address": "124 Pine St.",
+    "city": "Durham",
+    "state": "NC",
+    "zip": "27609"
+  },
+  "dropoffLocation": {
+    "street_address": "123 Pine St.",
+    "city": "Durham",
+    "state": "NC",
+    "zip": "27609"
+  }
+}
+```
+</details>
+
+<details>
+<summary>POST /rides/:id/cancel</summary>
+
+**Description:**
+
+Driver cancels the ride
+
+**Request Body:**
+```json
+{
+  "message": "my car broke down"
+}
+```
+
+**Response:**
+```json
+{
+  "id": 2,
+  "pickupTime": "2019-02-07 18:00",
+  "riderName": "Amy Smith",
+  "riderPhone": "919-123-4568",
+  "state": "cancele",
+  "pickupLocation": {
+    "street_address": "124 Pine St.",
+    "city": "Durham",
+    "state": "NC",
+    "zip": "27609"
+  },
+  "dropoffLocation": {
+    "street_address": "123 Pine St.",
+    "city": "Durham",
+    "state": "NC",
+    "zip": "27609"
+  }
+}
+```
+</details>
