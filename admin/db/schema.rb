@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_203053) do
+ActiveRecord::Schema.define(version: 2019_02_25_180900) do
 
   create_table "drivers", force: :cascade do |t|
     t.integer "organization_id"
@@ -39,7 +39,11 @@ ActiveRecord::Schema.define(version: 2019_02_19_203053) do
 
   create_table "recurring_patterns", force: :cascade do |t|
     t.integer "schedule_window_id"
+    t.integer "separation_count"
     t.integer "day_of_week"
+    t.integer "week_of_month"
+    t.integer "month_of_year"
+    t.string "type_of_repeating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["schedule_window_id"], name: "index_recurring_patterns_on_schedule_window_id"
@@ -77,6 +81,18 @@ ActiveRecord::Schema.define(version: 2019_02_19_203053) do
     t.index ["driver_id"], name: "index_rides_on_driver_id"
     t.index ["organization_id"], name: "index_rides_on_organization_id"
     t.index ["rider_id"], name: "index_rides_on_rider_id"
+  end
+
+  create_table "schedule_window_exceptions", force: :cascade do |t|
+    t.integer "schedule_window_id"
+    t.boolean "is_canceled"
+    t.date "start_date"
+    t.date "end_date"
+    t.time "start_time"
+    t.time "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["schedule_window_id"], name: "index_schedule_window_exceptions_on_schedule_window_id"
   end
 
   create_table "schedule_windows", force: :cascade do |t|

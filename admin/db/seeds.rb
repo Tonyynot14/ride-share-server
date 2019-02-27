@@ -40,11 +40,61 @@ Token.create(rider_id: "3", created_at: "2019-02-19 12:30" , expires_at: "2019-0
 Token.create(rider_id: "4", created_at: "2019-02-19 12:30" , expires_at: "2019-05-19 12:30",  used_at: nil, is_valid: true)
 Token.create(rider_id: "4", created_at: "2019-02-19 12:30" , expires_at: "2019-05-19 12:30",  used_at: nil, is_valid: true)
 
-ScheduleWindow.create(driver_id: "1", start_date: "2019-1-1", end_date: "2020-1-1", start_time: "2019-01-01 10:30:00", end_time: "2019-01-01 14:30:00", is_recurring: true)
-ScheduleWindow.create(driver_id: "1", start_date: "2019-1-3", end_date: "2020-1-3", start_time: "2019-01-03 10:30:00", end_time: "2019-01-01 14:30:00", is_recurring: true)
-ScheduleWindow.create(driver_id: "2", start_date: "2019-1-4", end_date: "2019-1-4", start_time: "2019-01-04 12:30:00", end_time: "2019-01-04 17:30:00", is_recurring: false)
-ScheduleWindow.create(driver_id: "2", start_date: "2019-1-5", end_date: "2020-1-5", start_time: "2019-01-01 10:30:00", end_time: "2019-01-01 12:30:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "1", start_date: "2019-3-4", end_date: "2020-3-9", start_time: "2019-03-04 10:30:00", end_time: "2019-03-04 12:30:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "1", start_date: "2019-3-5", end_date: "2020-3-10", start_time: "2019-03-05 12:30:00", end_time: "2019-03-05 16:30:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "1", start_date: "2019-3-7", end_date: "2019-3-12", start_time: "2019-03-07 09:00:00", end_time: "2019-03-07 13:00:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "1", start_date: "2019-3-8", end_date: "2020-3-13", start_time: "2019-03-08 10:30:00", end_time: "2019-03-08 10:30:00", is_recurring: true)
 
-RecurringPattern.create(schedule_window_id: "1", day_of_week: "3")
-RecurringPattern.create(schedule_window_id: "2", day_of_week: "5")
-RecurringPattern.create(schedule_window_id: "4", day_of_week: "7")
+ScheduleWindow.create(driver_id: "2", start_date: "2019-3-4", end_date: "2020-3-9", start_time: "2019-03-04 10:30:00", end_time: "2019-03-04 12:30:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "2", start_date: "2019-3-4", end_date: "2020-3-9", start_time: "2019-03-04 14:30:00", end_time: "2019-03-04 16:30:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "2", start_date: "2019-3-8", end_date: "2019-3-12", start_time: "2019-03-08 11:00:00", end_time: "2019-03-08 15:00:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "2", start_date: "2019-3-9", end_date: "2020-3-13", start_time: "2019-03-09 12:30:00", end_time: "2019-03-09 17:30:00", is_recurring: true)
+
+ScheduleWindow.create(driver_id: "3", start_date: "2019-3-4", end_date: "2020-3-9", start_time: "2019-03-04 10:30:00", end_time: "2019-03-04 12:00:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "3", start_date: "2019-3-5", end_date: "2020-3-10", start_time: "2019-03-05 12:30:00", end_time: "2019-03-05 16:30:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "3", start_date: "2019-3-6", end_date: "2019-3-12", start_time: "2019-03-06 09:00:00", end_time: "2019-03-06 12:00:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "3", start_date: "2019-3-6", end_date: "2020-3-13", start_time: "2019-03-06 14:30:00", end_time: "2019-03-06 17:30:00", is_recurring: true)
+
+ScheduleWindow.create(driver_id: "4", start_date: "2019-3-9", end_date: "2020-3-9", start_time: "2019-03-09 10:00:00", end_time: "2019-03-09 12:30:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "4", start_date: "2019-3-9", end_date: "2020-3-10", start_time: "2019-03-09 14:00:00", end_time: "2019-03-09 16:30:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "4", start_date: "2019-3-10", end_date: "2019-3-12", start_time: "2019-03-10 09:00:00", end_time: "2019-03-10 12:30:00", is_recurring: true)
+ScheduleWindow.create(driver_id: "4", start_date: "2019-3-10", end_date: "2020-3-13", start_time: "2019-03-10 14:30:00", end_time: "2019-03-10 18:00:00", is_recurring: true)
+
+
+ScheduleWindow.create(driver_id: "1", start_date: "2019-3-6", end_date: "2020-3-6", start_time: "2019-03-06 10:30:00", end_time: "2019-03-06 12:00:00", is_recurring: false)
+ScheduleWindow.create(driver_id: "1", start_date: "2019-3-13", end_date: "2020-3-13", start_time: "2019-03-13 12:30:00", end_time: "2019-03-13 16:30:00", is_recurring: false)
+
+ScheduleWindow.create(driver_id: "2", start_date: "2019-3-7", end_date: "2019-3-7", start_time: "2019-03-07 09:00:00", end_time: "2019-03-07 12:00:00", is_recurring: false)
+ScheduleWindow.create(driver_id: "2", start_date: "2019-3-14", end_date: "2020-3-14", start_time: "2019-03-14 14:30:00", end_time: "2019-03-14 17:30:00", is_recurring: false)
+
+ScheduleWindow.create(driver_id: "3", start_date: "2019-3-8", end_date: "2020-3-8", start_time: "2019-03-08 10:00:00", end_time: "2019-03-08 12:30:00", is_recurring: false)
+ScheduleWindow.create(driver_id: "3", start_date: "2019-3-15", end_date: "2020-3-15", start_time: "2019-03-15 14:00:00", end_time: "2019-03-15 16:30:00", is_recurring: false)
+
+ScheduleWindow.create(driver_id: "4", start_date: "2019-3-11", end_date: "2019-3-11", start_time: "2019-03-11 09:00:00", end_time: "2019-03-11 12:30:00", is_recurring: false)
+ScheduleWindow.create(driver_id: "4", start_date: "2019-3-12", end_date: "2020-3-12", start_time: "2019-03-12 14:30:00", end_time: "2019-03-12 18:00:00", is_recurring: false)
+
+
+
+
+RecurringPattern.create(schedule_window_id: "1", day_of_week: "1")
+RecurringPattern.create(schedule_window_id: "2", day_of_week: "2")
+RecurringPattern.create(schedule_window_id: "3", day_of_week: "4")
+RecurringPattern.create(schedule_window_id: "4", day_of_week: "5")
+
+RecurringPattern.create(schedule_window_id: "5", day_of_week: "1")
+RecurringPattern.create(schedule_window_id: "6", day_of_week: "1")
+RecurringPattern.create(schedule_window_id: "7", day_of_week: "5")
+RecurringPattern.create(schedule_window_id: "8", day_of_week: "6")
+
+RecurringPattern.create(schedule_window_id: "9", day_of_week: "1")
+RecurringPattern.create(schedule_window_id: "10", day_of_week: "2")
+RecurringPattern.create(schedule_window_id: "11", day_of_week: "3")
+RecurringPattern.create(schedule_window_id: "12", day_of_week: "3")
+
+RecurringPattern.create(schedule_window_id: "13", day_of_week: "6")
+RecurringPattern.create(schedule_window_id: "14", day_of_week: "6")
+RecurringPattern.create(schedule_window_id: "15", day_of_week: "0")
+RecurringPattern.create(schedule_window_id: "16", day_of_week: "0")
+
+
+# ScheduleWindowException(schedule_window_id: "1", is_canceled: true)

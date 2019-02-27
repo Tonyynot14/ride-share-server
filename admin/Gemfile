@@ -65,6 +65,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #grape gem
 gem 'grape'
 
+gem 'grape-entity'
+
 #CORS
 gem 'rack-cors', :require => 'rack/cors'
 
@@ -73,3 +75,4 @@ gem 'grape-active_model_serializers'
 
 #api documentation
 gem 'grape-swagger'
+gem 'grape-swagger-rails'
