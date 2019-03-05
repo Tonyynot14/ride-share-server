@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2019_02_25_180900) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "drivers", force: :cascade do |t|
-    t.integer "organization_id"
+    t.bigint "organization_id"
     t.string "first_name"
     t.string "last_name"
     t.string "phone"
@@ -38,7 +41,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_180900) do
   end
 
   create_table "recurring_patterns", force: :cascade do |t|
-    t.integer "schedule_window_id"
+    t.bigint "schedule_window_id"
     t.integer "separation_count"
     t.integer "day_of_week"
     t.integer "week_of_month"
@@ -50,7 +53,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_180900) do
   end
 
   create_table "riders", force: :cascade do |t|
-    t.integer "organization_id"
+    t.bigint "organization_id"
     t.string "first_name"
     t.string "last_name"
     t.string "phone"
@@ -62,9 +65,9 @@ ActiveRecord::Schema.define(version: 2019_02_25_180900) do
   end
 
   create_table "rides", force: :cascade do |t|
-    t.integer "organization_id"
-    t.integer "rider_id"
-    t.integer "driver_id"
+    t.bigint "organization_id"
+    t.bigint "rider_id"
+    t.bigint "driver_id"
     t.datetime "pick_up_time"
     t.string "start_street"
     t.string "start_city"
@@ -84,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_180900) do
   end
 
   create_table "schedule_window_exceptions", force: :cascade do |t|
-    t.integer "schedule_window_id"
+    t.bigint "schedule_window_id"
     t.boolean "is_canceled"
     t.date "start_date"
     t.date "end_date"
@@ -96,7 +99,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_180900) do
   end
 
   create_table "schedule_windows", force: :cascade do |t|
-    t.integer "driver_id"
+    t.bigint "driver_id"
     t.date "start_date"
     t.date "end_date"
     t.time "start_time"
@@ -106,7 +109,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_180900) do
   end
 
   create_table "tokens", force: :cascade do |t|
-    t.integer "rider_id"
+    t.bigint "rider_id"
     t.datetime "created_at", null: false
     t.datetime "expires_at"
     t.datetime "used_at"
