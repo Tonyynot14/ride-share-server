@@ -6,4 +6,6 @@ class Driver < ApplicationRecord
 
   belongs_to :organization
   has_many :rides
+  has_many :schedule_windows
+
 end
