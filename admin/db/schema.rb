@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_25_180900) do
+ActiveRecord::Schema.define(version: 2019_03_06_023719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,18 +24,37 @@ ActiveRecord::Schema.define(version: 2019_02_25_180900) do
     t.string "car_make"
     t.string "car_model"
     t.string "car_color"
-    t.string "address"
+    t.integer "radius", default: 50
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_drivers_on_organization_id"
   end
 
-  create_table "organizations", force: :cascade do |t|
-    t.string "name"
+  create_table "location_relationships", force: :cascade do |t|
+    t.bigint "location_id"
+    t.bigint "driver_id"
+    t.bigint "rider_id"
+    t.bigint "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["driver_id"], name: "index_location_relationships_on_driver_id"
+    t.index ["location_id"], name: "index_location_relationships_on_location_id"
+    t.index ["organization_id"], name: "index_location_relationships_on_organization_id"
+    t.index ["rider_id"], name: "index_location_relationships_on_rider_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
     t.string "street"
     t.string "city"
     t.string "state"
     t.string "zip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,7 +77,6 @@ ActiveRecord::Schema.define(version: 2019_02_25_180900) do
     t.string "last_name"
     t.string "phone"
     t.string "email"
-    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_riders_on_organization_id"
@@ -69,21 +87,17 @@ ActiveRecord::Schema.define(version: 2019_02_25_180900) do
     t.bigint "rider_id"
     t.bigint "driver_id"
     t.datetime "pick_up_time"
-    t.string "start_street"
-    t.string "start_city"
-    t.string "start_state"
-    t.string "start_zip"
-    t.string "end_street"
-    t.string "end_city"
-    t.string "end_state"
-    t.string "end_zip"
+    t.bigint "start_location_id"
+    t.bigint "end_location_id"
     t.text "reason"
     t.string "status", default: "requested"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_rides_on_driver_id"
+    t.index ["end_location_id"], name: "index_rides_on_end_location_id"
     t.index ["organization_id"], name: "index_rides_on_organization_id"
     t.index ["rider_id"], name: "index_rides_on_rider_id"
+    t.index ["start_location_id"], name: "index_rides_on_start_location_id"
   end
 
   create_table "schedule_window_exceptions", force: :cascade do |t|
@@ -104,8 +118,10 @@ ActiveRecord::Schema.define(version: 2019_02_25_180900) do
     t.date "end_date"
     t.time "start_time"
     t.time "end_time"
+    t.bigint "location_id"
     t.boolean "is_recurring"
     t.index ["driver_id"], name: "index_schedule_windows_on_driver_id"
+    t.index ["location_id"], name: "index_schedule_windows_on_location_id"
   end
 
   create_table "tokens", force: :cascade do |t|

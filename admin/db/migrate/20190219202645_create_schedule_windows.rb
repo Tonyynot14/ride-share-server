@@ -6,6 +6,7 @@ class CreateScheduleWindows < ActiveRecord::Migration[5.2]
       t.date :end_date
       t.time :start_time
       t.time :end_time
+      t.belongs_to :location
       t.boolean :is_recurring
 
     end

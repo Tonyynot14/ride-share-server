@@ -17,7 +17,7 @@ module API
             ride"
       end
       get "rides/:id", root: :ride do
-        Ride.where(id: permitted_params[:id]).first!
+        Ride.find(permitted_params[:id])
       end
     end
   end

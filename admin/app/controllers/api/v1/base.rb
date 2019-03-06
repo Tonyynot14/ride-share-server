@@ -8,6 +8,7 @@ module API
       mount API::V1::Riders
       mount API::V1::Rides
       mount API::V1::ScheduleWindows
+      mount API::V1::Locations
       # mount API::V1::RecurringPattern
       # mount API::V1::AnotherResource
 

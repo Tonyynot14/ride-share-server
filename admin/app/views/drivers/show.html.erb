@@ -20,11 +20,6 @@
   <%= @driver.email %>
 </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @driver.address%>
-</p>
-
 
 <p>
   <strong>Car Make:</strong>
@@ -46,6 +41,10 @@
   <strong>Schedules:</strong>
   <%= @schedules %>
 </p>
+<h2>Locations</h2>
+<% @locations.each do |location| %>
+    <p><%= location.street %>, <%= location.city %> <%= location.state %>, <%= location.zip  %></p>
+<% end %>
 
 <%= link_to 'Edit', edit_driver_path(@driver) %> |
 <%= link_to 'Back', drivers_path %>
