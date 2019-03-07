@@ -21,6 +21,21 @@ module API
       end
 
 
+
+      desc "Return all locations for a given driver"
+      params do
+        requires :id, type: String, desc: "ID of the
+            driver"
+      end
+      get "locations/drivers/:id", root: :location do
+        location_ids = LocationRelationship.where(driver_id: params[:id]).ids
+        locations = Location.where(id: location_ids)
+        return locations
+      end
+
+
+
+
       desc "post a location"
       post "locations" do
         Location.create(street: params[:street], city: params[:city], state: params[:state], zip: params[:zip])

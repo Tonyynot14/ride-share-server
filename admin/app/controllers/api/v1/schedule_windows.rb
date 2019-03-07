@@ -5,12 +5,12 @@ module API
 
 
       helpers do
-        def createRecurringEvents(events, recurrences, all_events)
+        def createRecurringEvents(events, first_date, last_date, all_events)
             events.each do |event|
               event_pattern = RecurringPattern.where(schedule_window_id: event.id).first!
               dayOfWeek = Date.today.wday
               patternDayOfWeek = event_pattern.day_of_week
-              currentEventDate = Date.today
+              currentEventDate = first_date
               location = Location.find(event.location_id)
               puts event.location_id
               if patternDayOfWeek >= dayOfWeek
@@ -18,9 +18,14 @@ module API
               else
                 currentEventDate = currentEventDate+(7-dayOfWeek + patternDayOfWeek).days
               end
-              recurrences.times do |n|
-                currentEventDate = currentEventDate+n.weeks
+              week_counter = 0
+              puts last_date
+              while currentEventDate < last_date
+                puts currentEventDate
+                currentEventDate = currentEventDate+week_counter.weeks
                 all_events.push({"event_id": event.id, "start_date": currentEventDate, "end_date": currentEventDate, "start_time": event.start_time, "end_time": event.end_time, "is_recurring": event.is_recurring, "location": location})
+                week_counter +=1
+                puts week_counter
               end
             end
         end
@@ -32,7 +37,7 @@ module API
           end
         end
 
-        def createAllEvents(schedules, all_events)
+        def createAllEvents(schedules, start_date, stop_date, all_events)
           repeating_events = []
           non_repeating_events = []
           schedules.each do |e|
@@ -42,7 +47,7 @@ module API
               non_repeating_events.push(e)
             end
           end
-          createRecurringEvents(repeating_events, 4, all_events)
+          createRecurringEvents(repeating_events, start_date, stop_date, all_events)
           createNonRecurringEvents(non_repeating_events, all_events)
           all_events.sort_by!{|i| i[:start_time]}
           all_events.sort_by!{|i| i[:start_date]}.reverse
@@ -65,11 +70,17 @@ module API
       params do
         requires :id, type: String, desc: "ID of the
             driver"
+        requires :start, type: Time
+        requires :end, type: Time
       end
-      get "schedules/:id", root: :schedule_windows do
+      get "schedules/:id/:start/:end", root: :schedule_windows do
         schedules = ScheduleWindow.where(driver_id: permitted_params[:id])
         all_events = []
-        createAllEvents(schedules, all_events)
+        puts "beginning"
+        puts params[:start]
+        puts params[:end]
+        puts "end"
+        createAllEvents(schedules, params[:start], params[:end], all_events)
         render json: all_events
       end
 
