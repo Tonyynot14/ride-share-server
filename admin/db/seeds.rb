@@ -146,8 +146,16 @@ LocationRelationship.create(location_id: "8", driver_id: nil, rider_id: "4", org
 LocationRelationship.create(location_id: "9", driver_id: nil, rider_id: nil, organization_id: "1")
 LocationRelationship.create(location_id: "10", driver_id: nil, rider_id: nil, organization_id: "2")
 
-
 LocationRelationship.create(location_id: "11", driver_id: "1", rider_id: nil, organization_id: nil)
+
+LocationRelationship.create(location_id: "12", driver_id: nil, rider_id: nil, organization_id: nil)
+LocationRelationship.create(location_id: "13", driver_id: nil, rider_id: nil, organization_id: nil)
+LocationRelationship.create(location_id: "14", driver_id: nil, rider_id: nil, organization_id: nil)
+LocationRelationship.create(location_id: "15", driver_id: nil, rider_id: nil, organization_id: nil)
+
+
+
+
 LocationRelationship.create(location_id: "16", driver_id: "2", rider_id: nil, organization_id: nil)
 LocationRelationship.create(location_id: "17", driver_id: "3", rider_id: nil, organization_id: nil)
 LocationRelationship.create(location_id: "18", driver_id: "3", rider_id: nil, organization_id: nil)
@@ -157,10 +165,6 @@ LocationRelationship.create(location_id: "10", driver_id: "4", rider_id: nil, or
 
 
 
-LocationRelationship.create(location_id: "12", driver_id: nil, rider_id: nil, organization_id: nil)
-LocationRelationship.create(location_id: "13", driver_id: nil, rider_id: nil, organization_id: nil)
-LocationRelationship.create(location_id: "14", driver_id: nil, rider_id: nil, organization_id: nil)
-LocationRelationship.create(location_id: "15", driver_id: nil, rider_id: nil, organization_id: nil)
 
 
 # ScheduleWindowException(schedule_window_id: "1", is_canceled: true)

@@ -73,7 +73,7 @@ module API
         requires :start, type: Time
         requires :end, type: Time
       end
-      get "schedules/:id/:start/:end", root: :schedule_windows do
+      get "schedules/:id", root: :schedule_windows do
         schedules = ScheduleWindow.where(driver_id: permitted_params[:id])
         all_events = []
         puts "beginning"
