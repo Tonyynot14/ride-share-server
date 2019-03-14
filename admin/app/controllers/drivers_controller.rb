@@ -6,8 +6,8 @@ class DriversController < ApplicationController
 
   def show
     @driver = Driver.find(params[:id])
-    @locationsIds = LocationRelationship.where(driver_id: params[:id]).ids
-    @locations = Location.where(id: @locationsIds)
+    @location_ids = LocationRelationship.where(driver_id: params[:id]).ids
+    @locations = Location.where(id: @location_ids)
 
   end
 

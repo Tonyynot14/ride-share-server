@@ -3,12 +3,17 @@ module API
     class Rides < Grape::API
       include API::V1::Defaults
 
-          resource :rides do
-            desc "Return all riders"
-            get "", root: :rides do
-              Ride.all
-            end
+
+        desc "Return all riders"
+        params do
+          optional :start, type: String, desc: "Start date for rides"
+          optional :end, type: String, desc: "End date for rides"
+          optional :status, type: Array, desc: "List of status wanted"
+        end
+          get "rides", root: :rides do
+            Ride.all
           end
+
 
 
           desc "Return a ride"

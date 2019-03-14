@@ -7,8 +7,8 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
-    @locationIds = LocationRelationship.where(rider_id: params[:id]).ids
-    @locations = Location.where(id: @locationIds)
+    @location_ids = LocationRelationship.where(rider_id: params[:id]).ids
+    @locations = Location.where(id: @location_ids)
 
   end
 

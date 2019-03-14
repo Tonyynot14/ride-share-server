@@ -9,8 +9,8 @@ class RidersController < ApplicationController
   def show
     @rider = Rider.find(params[:id])
     @count = Token.where(rider_id:  @rider.id).count
-    @locationIds = LocationRelationship.where(rider_id: params[:id]).ids
-    @locations = Location.where(id: @locationIds)
+    @location_ids = LocationRelationship.where(rider_id: params[:id]).ids
+    @locations = Location.where(id: @location_ids)
 
   end
 

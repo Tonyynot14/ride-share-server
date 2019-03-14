@@ -97,16 +97,16 @@ module API
         requires :driver_id, type: String, desc: "ID of location"
       end
       put 'locations/:id/drivers/:driver_id' do
-        oldLocation = Location.find(permitted_params[:id])
+        old_location = Location.find(permitted_params[:id])
         if LocationRelationship.where(location_id: permitted_params[:id]).count > 1
-          newLocation = Location.create(street: params[:street], city: params[:city], state: params[:state], zip: params[:zip])
-          LocationRelationship.create(location_id: newLocation.id, driver_id: permitted_params[:driver_id])
+          new_location = Location.create(street: params[:street], city: params[:city], state: params[:state], zip: params[:zip])
+          LocationRelationship.create(location_id: new_location.id, driver_id: permitted_params[:driver_id])
           # LocationRelationship.find_by(location_id: permitted_params[:id], driver_id: driver)
         else
-          oldLocation.update(street: params[:street], city: params[:city], state: params[:state], zip: params[:zip])
+          old_location.update(street: params[:street], city: params[:city], state: params[:state], zip: params[:zip])
         end
 
-        return newLocation
+        return new_location
       end
 
 
@@ -117,8 +117,8 @@ module API
         requires :id, type: String, desc: "ID of location"
       end
       put 'locations/:id' do
-        oldLocation = Location.find(permitted_params[:id])
-        oldLocation.update(street: params[:street], city: params[:city], state: params[:state], zip: params[:zip])
+        old_location = Location.find(permitted_params[:id])
+        old_location.update(street: params[:street], city: params[:city], state: params[:state], zip: params[:zip])
         return Location.find(permitted_params[:id])
       end
     end
