@@ -8,6 +8,9 @@ class Rider < ApplicationRecord
   has_many :tokens, dependent: :destroy
   has_many :riders
 
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
 
 
 end

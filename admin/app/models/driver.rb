@@ -9,4 +9,7 @@ class Driver < ApplicationRecord
   has_many :schedule_windows
 
 
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
 end

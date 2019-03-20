@@ -20,12 +20,16 @@ ActiveRecord::Schema.define(version: 2019_03_06_023719) do
     t.string "first_name"
     t.string "last_name"
     t.string "phone"
-    t.string "email"
     t.string "car_make"
     t.string "car_model"
     t.string "car_color"
     t.integer "radius", default: 50
     t.boolean "is_active", default: true
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_drivers_on_organization_id"
@@ -55,6 +59,11 @@ ActiveRecord::Schema.define(version: 2019_03_06_023719) do
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,7 +85,11 @@ ActiveRecord::Schema.define(version: 2019_03_06_023719) do
     t.string "first_name"
     t.string "last_name"
     t.string "phone"
-    t.string "email"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_riders_on_organization_id"
