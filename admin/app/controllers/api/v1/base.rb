@@ -4,6 +4,7 @@ module API
   module V1
     class Base < Grape::API
 
+
       mount API::V1::Drivers
       mount API::V1::Riders
       mount API::V1::Rides
@@ -15,6 +16,7 @@ module API
       add_swagger_documentation(
           api_version: "v1",
           hide_documentation_path: true,
+          base_path: 'http://localhost:3000',
           mount_path: "/api/v1/swagger_doc",
           hide_format: true
       )
