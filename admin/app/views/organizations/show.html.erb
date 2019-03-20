@@ -12,26 +12,10 @@
   <%= @organization.name %>
 </p>
 
-<p>
-  <strong>Street:</strong>
-  <%= @organization.street%>
-</p>
-
-
-<p>
-  <strong>City:</strong>
-  <%= @organization.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @organization.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @organization.zip%>
-</p>
+<h2>Locations:</h2>
+<% @locations.each do |location| %>
+  <p><%= location.street %>, <%= location.city %> <%= location.state %>, <%= location.zip  %></p>
+<% end %>
 
 
 

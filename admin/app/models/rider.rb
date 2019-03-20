@@ -8,4 +8,6 @@ class Rider < ApplicationRecord
   has_many :tokens, dependent: :destroy
   has_many :riders
 
+
+
 end

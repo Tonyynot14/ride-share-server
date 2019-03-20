@@ -7,6 +7,8 @@ class RidesController < ApplicationController
 
     def show
       @ride = Ride.find(params[:id])
+      @start_location = Location.find(@ride.start_location_id)
+      @end_location = Location.find(@ride.end_location_id)
     end
 
     def index

@@ -8,4 +8,5 @@ class Driver < ApplicationRecord
   has_many :rides
   has_many :schedule_windows
 
+
 end

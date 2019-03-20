@@ -11,7 +11,8 @@ class CreateDrivers < ActiveRecord::Migration[5.2]
       t.string :car_make
       t.string :car_model
       t.string :car_color
-      t.string :address
+      t.integer :radius, :default => 50
+      t.boolean :is_active, :default => true
 
       t.timestamps
     end

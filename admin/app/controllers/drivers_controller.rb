@@ -6,6 +6,8 @@ class DriversController < ApplicationController
 
   def show
     @driver = Driver.find(params[:id])
+    @location_ids = LocationRelationship.where(driver_id: params[:id]).ids
+    @locations = Location.where(id: @location_ids)
 
   end
 
@@ -15,7 +17,6 @@ class DriversController < ApplicationController
 
   def create
     @driver = Driver.new(driver_params)
-
     if @driver.save
       redirect_to @driver
     else

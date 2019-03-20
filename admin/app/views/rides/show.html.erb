@@ -23,46 +23,15 @@
 </p>
 
 <p>
-  <strong>Start Street:</strong>
-  <%= @ride.start_street %>
+  <strong>Start Address:</strong>
+  <%= @start_location.street %>, <%= @start_location.city %> <%= @start_location.state %>, <%= @start_location.zip %>
 </p>
 
 <p>
-  <strong>Start City:</strong>
-  <%= @ride.start_city%>
+  <strong>End Address:</strong>
+  <%= @end_location.street %>, <%= @end_location.city %> <%= @end_location.state %>, <%= @end_location.zip %>
 </p>
 
-<p>
-  <strong>Start State:</strong>
-  <%= @ride.start_state%>
-</p>
-
-
-<p>
-  <strong>Start Zip:</strong>
-  <%= @ride.start_zip %>
-</p>
-
-<p>
-  <strong>End Street:</strong>
-  <%= @ride.end_street %>
-</p>
-
-<p>
-  <strong>End City:</strong>
-  <%= @ride.end_city %>
-</p>
-
-
-<p>
-  <strong>End State:</strong>
-  <%= @ride.end_state %>
-</p>
-
-<p>
-  <strong>End Zip:</strong>
-  <%= @ride.end_zip %>
-</p>
 
 <p>
   <strong>Ride Reason:</strong>

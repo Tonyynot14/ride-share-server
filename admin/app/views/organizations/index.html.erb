@@ -6,10 +6,6 @@
   <tr>
     <th>ID</th>
     <th>Name</th>
-    <th>Street</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Durham</th>
 
     <th></th>
   </tr>
@@ -18,10 +14,6 @@
     <tr>
       <td><%= org.id %></td>
       <td><%= org.name %></td>
-      <td><%= org.street %></td>
-      <td><%= org.city %></td>
-      <td><%= org.state %></td>
-      <td><%= org.zip %></td>
       <td><%= link_to 'Show', organization_path(org) %></td>
       <td><%= link_to 'Edit', edit_organization_path(org) %></td>
       <td><%= link_to 'Destroy', organization_path(org),

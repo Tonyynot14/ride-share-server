@@ -17,7 +17,13 @@ module API
             rider"
       end
       get "riders/:id", root: :rider do
-        Rider.where(id: permitted_params[:id]).first!
+        rider = Rider.find(permitted_params[:id])
+        location_ids = LocationRelationship.where(driver_id: permitted_params[:id])
+        locations = []
+        location_ids.each do |id|
+          locations.push(Location.where(id: id))
+        end
+        render json: {"rider": rider, "locations": locations}
       end
 
     end

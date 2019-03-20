@@ -31,10 +31,10 @@
   <%= @count %>
 </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @rider.address %>
-</p>
+<h2>Locations</h2>
+<% @locations.each do |location| %>
+  <p><%= location.street %>, <%= location.city %> <%= location.state %>, <%= location.zip  %></p>
+<% end %>
 
 <%= link_to 'Edit', edit_rider_path(@rider) %> |
 <%= link_to 'Back', riders_path %> |
