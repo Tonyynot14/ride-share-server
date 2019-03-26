@@ -9,8 +9,6 @@ module API
       mount API::V1::Rides
       mount API::V1::ScheduleWindows
       mount API::V1::Locations
-      # mount API::V1::RecurringPattern
-      # mount API::V1::AnotherResource
 
       add_swagger_documentation(
           api_version: "v1",
