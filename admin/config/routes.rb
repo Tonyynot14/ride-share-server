@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  devise_for :organizations, controllers: {registrations: "organizations/registrations"}
+  devise_for :drivers
+  devise_for :riders
   mount API::Base, at: "/"
   mount GrapeSwaggerRails::Engine, at: "/documentation"
 
