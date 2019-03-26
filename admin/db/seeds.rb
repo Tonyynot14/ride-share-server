@@ -8,19 +8,19 @@
 
 
 
-Organization.create(name: "Durham Rescue Mission")
-Organization.create(name: "Urban Ministries of Durham")
+Organization.create(name: "Durham Rescue Mission", email: "drm@gmail.com", password: "password", password_confirmation: "password")
+Organization.create(name: "Urban Ministries of Durham",  email: "umd@gmail.com", password: "password", password_confirmation: "password")
 
 
-Driver.create(organization_id: "1", first_name: "Teddy", last_name: "Ruby", phone: "4086948508", email: "ejr25@duke.edu", car_make: "Toyota", car_model: "Tacoma", car_color: "Silver")
-Driver.create(organization_id: "1", first_name: "John", last_name: "Smith", phone: "4362484055", email: "j.smith@gmail.com", car_make: "Toyota", car_model: "Camry", car_color: "Blue")
-Driver.create(organization_id: "1", first_name: "Katie", last_name: "Jones", phone: "92986948508", email: "katie@duke.edu", car_make: "Honda", car_model: "Civic", car_color: "Black")
-Driver.create(organization_id: "2", first_name: "Sarah", last_name: "Kim", phone: "4029348508", email: "Sarah.Kim@yahoo.com", car_make: "Nissan", car_model: "Altima", car_color: "Silver")
+Driver.create(organization_id: "1", first_name: "Teddy", last_name: "Ruby", phone: "4086948508", email: "ejr25@duke.edu", car_make: "Toyota", car_model: "Tacoma", car_color: "Silver", password: "password", password_confirmation: "password")
+Driver.create(organization_id: "1", first_name: "John", last_name: "Smith", phone: "4362484055", email: "j.smith@gmail.com", car_make: "Toyota", car_model: "Camry", car_color: "Blue", password: "password", password_confirmation: "password")
+Driver.create(organization_id: "1", first_name: "Katie", last_name: "Jones", phone: "92986948508", email: "katie@duke.edu", car_make: "Honda", car_model: "Civic", car_color: "Black", password: "password", password_confirmation: "password")
+Driver.create(organization_id: "2", first_name: "Sarah", last_name: "Kim", phone: "4029348508", email: "Sarah.Kim@yahoo.com", car_make: "Nissan", car_model: "Altima", car_color: "Silver", password: "password", password_confirmation: "password")
 
-Rider.create(organization_id: "1", first_name: "Katelyn", last_name: "Splint" , phone: "9293842930", email: "ks@duke.edu")
-Rider.create(organization_id: "1", first_name: "James", last_name: "Cage" , phone: "3292842339",  email: "cage@gmail.com")
-Rider.create(organization_id: "1", first_name: "Mary", last_name: "Young" , phone: "52934542930",  email: "myoung@yahoo.com")
-Rider.create(organization_id: "2", first_name: "Jim", last_name: "Free" , phone: "9223842200",  email: "free_j@gmail.com")
+Rider.create(organization_id: "1", first_name: "Katelyn", last_name: "Splint" , phone: "9293842930", email: "ks@duke.edu", password: "password", password_confirmation: "password")
+Rider.create(organization_id: "1", first_name: "James", last_name: "Cage" , phone: "3292842339",  email: "cage@gmail.com", password: "password", password_confirmation: "password")
+Rider.create(organization_id: "1", first_name: "Mary", last_name: "Young" , phone: "52934542930",  email: "myoung@yahoo.com", password: "password", password_confirmation: "password")
+Rider.create(organization_id: "2", first_name: "Jim", last_name: "Free" , phone: "9223842200",  email: "free_j@gmail.com", password: "password", password_confirmation: "password")
 
 
 
