@@ -4,6 +4,9 @@ module API
       include API::V1::Defaults
 
 
+      # acts_as_token_authentication_handler_for Driver
+      # before_action :require_authentication!
+
 
     desc "Return all riders"
     get "/drivers", root: :driver do

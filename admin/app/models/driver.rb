@@ -12,4 +12,7 @@ class Driver < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # acts_as_token_authenticatable
+  # # field :authentication_token
+
 end
