@@ -13,18 +13,20 @@
   </tr>
 
   <% @tokens.each do |token| %>
-    <tr>
-      <td><%= token.rider_id %></td>
-      <td><%= token.created_at %></td>
-      <td><%= token.expires_at %></td>
-      <td><%= token.used_at %></td>
-      <td><%= token.is_valid %></td>
-      <td><%= link_to 'Show', token_path(token) %></td>
-      <td><%= link_to 'Edit', edit_token_path(token) %></td>
-      <td><%= link_to 'Destroy', token_path(token),
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+    <% if token.rider.organization.name==current_organization.name%>
+      <tr>
+        <td><%= token.rider_id %></td>
+        <td><%= token.created_at %></td>
+        <td><%= token.expires_at %></td>
+        <td><%= token.used_at %></td>
+        <td><%= token.is_valid %></td>
+        <td><%= link_to 'Show', token_path(token) %></td>
+        <td><%= link_to 'Edit', edit_token_path(token) %></td>
+        <td><%= link_to 'Destroy', token_path(token),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
 
