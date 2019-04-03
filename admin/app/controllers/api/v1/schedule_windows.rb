@@ -6,28 +6,24 @@ module API
 
       helpers do
         def create_recurring_events(events, first_date, last_date, all_events)
-            events.each do |event|
-              event_pattern = RecurringPattern.where(schedule_window_id: event.id).first!
-              day_of_week = Date.today.wday
-              pattern_day_of_week = event_pattern.day_of_week
-              current_event_date = first_date
-              location = Location.find(event.location_id)
-              puts event.location_id
-              if pattern_day_of_week >= day_of_week
-                current_event_date = current_event_date+(pattern_day_of_week-day_of_week).days
-              else
-                current_event_date = current_event_date+(7-day_of_week + pattern_day_of_week).days
-              end
-              week_counter = 0
-              puts last_date
-              while current_event_date < last_date
-                puts current_event_date
-                current_event_date = current_event_date+week_counter.weeks
-                all_events.push({"eventId": event.id, "startDate": current_event_date, "endDate": current_event_date, "startTime": event.start_time, "endTime": event.end_time, "isRecurring": event.is_recurring, "location": location})
-                week_counter +=1
-                puts week_counter
-              end
+          events.each do |event|
+            event_pattern = RecurringPattern.where(schedule_window_id: event.id).first!
+            day_of_week = Date.today.wday
+            pattern_day_of_week = event_pattern.day_of_week
+            current_event_date = first_date
+            location = Location.find(event.location_id)
+            if pattern_day_of_week >= day_of_week
+              current_event_date = current_event_date+(pattern_day_of_week-day_of_week).days
+            else
+              current_event_date = current_event_date+(7-day_of_week + pattern_day_of_week).days
             end
+            week_counter = 0
+            while current_event_date < last_date
+              current_event_date = current_event_date+week_counter.weeks
+              all_events.push({"eventId": event.id, "startDate": current_event_date, "endDate": current_event_date, "startTime": event.start_time, "endTime": event.end_time, "isRecurring": event.is_recurring, "location": location})
+              week_counter +=1
+            end
+          end
         end
 
         def create_nonrecurring_events(events, all_events)
@@ -93,7 +89,7 @@ module API
       get "schedules/window/:id", root: :schedule_windows do
         schedule = ScheduleWindow.where(id: permitted_params[:id])
         all_events = []
-        create_all_events(schedule, all_events)
+        create_all_events(schedule, Date.today, Date.today+1.year, all_events)
         render json: all_events
       end
 
