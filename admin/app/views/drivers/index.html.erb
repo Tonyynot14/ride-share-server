@@ -16,21 +16,23 @@
   </tr>
 
   <% @drivers.each do |driver| %>
-    <tr>
-      <td><%= driver.id %></td>
-      <td><%= driver.first_name %></td>
-      <td><%= driver.last_name %></td>
-      <td><%= driver.phone %></td>
-      <td><%= driver.email %></td>
-      <td><%= driver.car_make %></td>
-      <td><%= driver.car_model %></td>
-      <td><%= driver.car_color %></td>
-      <td><%= link_to 'Show', driver_path(driver) %></td>
-      <td><%= link_to 'Edit', edit_driver_path(driver) %></td>
-      <td><%= link_to 'Destroy', driver_path(driver),
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+    <% if driver.organization.name==current_organization.name%>
+      <tr>
+        <td><%= driver.id %></td>
+        <td><%= driver.first_name %></td>
+        <td><%= driver.last_name %></td>
+        <td><%= driver.phone %></td>
+        <td><%= driver.email %></td>
+        <td><%= driver.car_make %></td>
+        <td><%= driver.car_model %></td>
+        <td><%= driver.car_color %></td>
+        <td><%= link_to 'Show', driver_path(driver) %></td>
+        <td><%= link_to 'Edit', edit_driver_path(driver) %></td>
+        <td><%= link_to 'Destroy', driver_path(driver),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
 
