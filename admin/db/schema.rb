@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_06_023719) do
+ActiveRecord::Schema.define(version: 2019_04_03_213812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(version: 2019_03_06_023719) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "authentication_token", limit: 30
+    t.string "auth_token"
+    t.index ["auth_token"], name: "index_drivers_on_auth_token"
+    t.index ["authentication_token"], name: "index_drivers_on_authentication_token", unique: true
     t.index ["organization_id"], name: "index_drivers_on_organization_id"
   end
 
@@ -53,8 +57,6 @@ ActiveRecord::Schema.define(version: 2019_03_06_023719) do
     t.string "city"
     t.string "state"
     t.string "zip"
-    t.string "latitude"
-    t.string "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
