@@ -1,7 +1,7 @@
-module API
+module Api
   module V1
     class ScheduleWindows < Grape::API
-      include API::V1::Defaults
+      include Api::V1::Defaults
 
 
       helpers do

@@ -1,14 +1,14 @@
 require "grape-swagger"
 
-module API
+module Api
   module V1
     class Base < Grape::API
 
-      mount API::V1::Drivers
-      mount API::V1::Riders
-      mount API::V1::Rides
-      mount API::V1::ScheduleWindows
-      mount API::V1::Locations
+      mount Api::V1::Drivers
+      mount Api::V1::Riders
+      mount Api::V1::Rides
+      mount Api::V1::ScheduleWindows
+      mount Api::V1::Locations
 
       add_swagger_documentation(
           api_version: "v1",

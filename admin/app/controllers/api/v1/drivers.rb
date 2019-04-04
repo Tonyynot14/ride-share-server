@@ -1,9 +1,12 @@
-module API
+module Api
   module V1
     class Drivers < Grape::API
-      include API::V1::Defaults
+      include Api::V1::Defaults
 
 
+      before do
+        require_login!
+      end
 
     desc "Return all riders"
     get "/drivers", root: :driver do
@@ -25,17 +28,7 @@ module API
         end
         render json: {"driver": driver, "location": locations}
       end
-
-     #
-     #  desc "Return a driver"
-     #  params do
-     #    requires :id, type: String
-     #    requires :organization_id, type: String
-     #  end
-     #  get "drivers/:id", root: :driver do
-     #    Driver.where(organization_id:  permitted_params[:organization_id], id: permitted_params[:id]).first!
-     #  end
-     #
+      
 
       desc "Update a driver"
       params do
