@@ -3,18 +3,16 @@ module Api
     class Locations < Grape::API
       include Api::V1::Defaults
 
-      resource :locations do
-        desc "Return all locations"
-          get "", root: :locations do
-            Location.all
-          end
-      end
+
+      desc "Return all locations"
+        get "locations", root: :locations do
+          Location.all
+        end
 
 
-      desc "Return a location"
+      desc "Return a location with a given ID"
       params do
-        requires :id, type: String, desc: "ID of the
-            location"
+        requires :id, type: String, desc: "ID of the location"
       end
       get "locations/:id", root: :location do
         Location.find(permitted_params[:id])
@@ -24,8 +22,7 @@ module Api
 
       desc "Return all locations for a given driver"
       params do
-        requires :id, type: String, desc: "ID of the
-            driver"
+        requires :id, type: String, desc: "ID of the driver"
       end
       get "locations/drivers/:id", root: :location do
         location_ids = LocationRelationship.where(driver_id: params[:id]).ids
@@ -36,16 +33,16 @@ module Api
 
 
 
-      desc "post a location"
+      desc "Create a new location"
       post "locations" do
         Location.create(street: params[:street], city: params[:city], state: params[:state], zip: params[:zip])
       end
 
 
 
-      desc "post a location from a driver"
+      desc "Create a new location from a driver"
       params do
-        requires :id, type: String, desc: "Drivers id"
+        requires :id, type: String, desc: "ID of driver for who location is for"
       end
       post "locations/drivers/:id" do
         location = Location.create(street: params[:street], city: params[:city], state: params[:state], zip: params[:zip])
@@ -57,7 +54,7 @@ module Api
 
 
 
-      desc "delete a location outright"
+      desc "Delete a location completely "
       params do
         requires :id, type: String, desc: "ID of location"
       end
@@ -72,14 +69,15 @@ module Api
 
 
 
-      desc "delete a location from a driver"
+      desc "Delete an association between a driver and a location"
       params do
-        requires :id, type: String, desc: "ID of location"
+        requires :location_id, type: String, desc: "ID of location"
+        requires :driver_id, type: String, desc: "ID of driver"
       end
       delete 'locations/:id/drivers/:driver_id' do
         location = Location.find(permitted_params[:id])
         if location != nil
-          LocationRelationship.find_by(location_id: permitted_params[:id], driver_id: params[:driver_id]).destroy
+          LocationRelationship.find_by(location_id: permitted_params[:location_id], driver_id: params[:driver_id]).destroy
           if LocationRelationship.where(location: permitted_params[:id]).count == 0
             location.destroy
           end

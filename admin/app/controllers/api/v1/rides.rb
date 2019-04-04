@@ -4,7 +4,7 @@ module Api
       include Api::V1::Defaults
 
 
-        desc "Return all riders"
+        desc "Return all rides"
         params do
           optional :start, type: String, desc: "Start date for rides"
           optional :end, type: String, desc: "End date for rides"
@@ -16,7 +16,7 @@ module Api
 
 
 
-          desc "Return a ride"
+          desc "Return a ride with given ID"
           params do
             requires :id, type: String, desc: "ID of the
                 ride"
@@ -28,10 +28,8 @@ module Api
 
         desc "Accept a ride"
         params do
-          requires :ride_id, type: String, desc: "ID of the
-                ride"
-          requires :driver_id, type: String, desc: "ID of the
-                driver"
+          requires :ride_id, type: String, desc: "ID of the ride"
+          requires :driver_id, type: String, desc: "ID of the driver"
         end
         post "rides/:ride_id/accept/:driver_id" do
           ride = Ride.find(permitted_params[:ride_id])
@@ -42,10 +40,8 @@ module Api
 
         desc "Complete a ride"
         params do
-          requires :ride_id, type: String, desc: "ID of the
-                  ride"
-          requires :driver_id, type: String, desc: "ID of the
-                  driver"
+          requires :ride_id, type: String, desc: "ID of the ride"
+          requires :driver_id, type: String, desc: "ID of the driver"
         end
         post "rides/:ride_id/complete/:driver_id" do
           ride = Ride.find(permitted_params[:ride_id])
@@ -55,10 +51,8 @@ module Api
 
       desc "Cancel a ride"
       params do
-        requires :ride_id, type: String, desc: "ID of the
-                  ride"
-        requires :driver_id, type: String, desc: "ID of the
-                  driver"
+        requires :ride_id, type: String, desc: "ID of the ride"
+        requires :driver_id, type: String, desc: "ID of the driver"
       end
       post "rides/:ride_id/cancel/:driver_id" do
         ride = Ride.find(permitted_params[:ride_id])

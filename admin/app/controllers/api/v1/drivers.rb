@@ -3,21 +3,23 @@ module Api
     class Drivers < Grape::API
       include Api::V1::Defaults
 
+      helpers SessionHelpers
 
-      before do
-        require_login!
-      end
 
-    desc "Return all riders"
+      # before do
+      #   require_login!
+      # end
+
+    desc "Return all drivers"
     get "/drivers", root: :driver do
       Driver.all
     end
 
 
 
-      desc "Return a driver"
+      desc "Return a driver with a given id"
       params do
-        requires :id, type: String
+        requires :id, type: String, desc: "ID of driver"
       end
       get "drivers/:id", root: :driver do
         driver = Driver.find(permitted_params[:id])
@@ -28,11 +30,11 @@ module Api
         end
         render json: {"driver": driver, "location": locations}
       end
-      
 
-      desc "Update a driver"
+
+      desc "Update a driver with a given id"
       params do
-        requires :id, type: String
+        requires :id, type: String, desc: "ID of driver"
       end
       put "drivers/:id" do
         driver = Driver.find(permitted_params[:id])
@@ -43,9 +45,9 @@ module Api
       end
 
 
-      desc "Delete a driver"
+      desc "Delete a driver with a given id"
       params do
-        requires :id, type: String
+        requires :id, type: String, desc: "ID of driver"
       end
       delete "drivers/:id" do
         driver = Driver.find(permitted_params[:id])

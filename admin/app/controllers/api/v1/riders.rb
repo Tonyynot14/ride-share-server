@@ -3,18 +3,15 @@ module Api
     class Riders < Grape::API
       include Api::V1::Defaults
 
-      resource :riders do
         desc "Return all riders"
-        get "", root: :riders do
+        get "riders", root: :riders do
           Rider.all
         end
-      end
 
 
-      desc "Return a rider"
+      desc "Return a rider with a given ID"
       params do
-        requires :id, type: String, desc: "ID of the
-            rider"
+        requires :id, type: String, desc: "ID of the rider"
       end
       get "riders/:id", root: :rider do
         rider = Rider.find(permitted_params[:id])

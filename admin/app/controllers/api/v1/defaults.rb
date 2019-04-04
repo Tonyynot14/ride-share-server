@@ -3,6 +3,8 @@ module Api
     module Defaults
       extend ActiveSupport::Concern
 
+
+
       included do
         prefix "api"
         version "v1", using: :path

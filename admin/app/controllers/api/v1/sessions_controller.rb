@@ -5,12 +5,8 @@ module Api
       skip_before_action :require_login!, only: [:create]
 
       def create
-        puts "1"
-        puts params[:email]
         resource = Driver.find_for_database_authentication(:email => params[:email])
         resource ||= Driver.new
-        puts "2"
-        puts resource
         if resource.valid_password?(params[:password])
           auth_token = resource.generate_auth_token
           puts "3"
