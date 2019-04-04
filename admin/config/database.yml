@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: carma_production
-  username: carma_production
-  password: <%= ENV['carma_production'] %>
