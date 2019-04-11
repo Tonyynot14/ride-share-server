@@ -3,25 +3,32 @@ module Api
   module V1
     class ScheduleWindows < Grape::API
       include Api::V1::Defaults
+
       helpers EventHelpers
+      helpers SessionHelpers
 
 
-
-      desc "Return all schedule windows"
-      get "availabilities", root: :schedule_windows do
-        ScheduleWindow.all
+      before do
+        error!('Unauthorized', 401) unless require_login!
       end
+
+
+
+      # desc "Return all schedule windows"
+      # get "availabilities", root: :schedule_windows do
+      #   ScheduleWindow.all
+      # end
 
 
 
       desc "Get a full schedule for a driver"
       params do
-        requires :id, type: String, desc: "ID of the driver"
         optional :start, type: Time, desc: "Start date for schedule"
         optional :end, type: Time, desc: "End date for schedule"
       end
-      get "availabilities/:id", root: :schedule_windows do
-        schedules = ScheduleWindow.where(driver_id: permitted_params[:id])
+      get "availabilities", root: :schedule_windows do
+        driver = current_driver
+        schedules = ScheduleWindow.where(driver_id: driver.id)
         all_events = []
         start_time = DateTime.now
         end_time = DateTime.now+3.months
@@ -46,17 +53,58 @@ module Api
 
       desc "Create an schedule window for a driver"
       params do
-        requires :id, type: String, desc: "ID of driver"
+        # requires :id, type: String, desc: "ID of driver"
       end
-      post "availabilities/:id" do
-
-        schedule_window = ScheduleWindow.create(driver_id: params[:id], start_date: params[:start_day], end_date: params[:end_day], start_time: params[:start_time],end_time: params[:end_time], location_id: params[:location_id], is_recurring: params[:is_recurring])
+      post "availabilities" do
+        driver = current_driver
+        schedule_window = ScheduleWindow.create(driver_id: driver.id, start_date: params[:start_date], end_date: params[:end_date], start_time: params[:start_time],end_time: params[:end_time], location_id: params[:location_id], is_recurring: params[:is_recurring])
         if params[:is_recurring] == true
           RecurringPattern.create(schedule_window_id: schedule_window.id, day_of_week: schedule_window.start_time.wday)
         end
         render schedule_window
       end
 
+
+
+
+
+      desc "Update an schedule window for a driver"
+      params do
+        requires :id, type: String, desc: "ID of avaliablity"
+      end
+      put "availabilities/:id" do
+        driver = current_driver
+        schedule_window = ScheduleWindow.where(id: params[:id]).where(driver_id: driver.id).first
+        schedule_window.update(driver_id: driver.id, start_date: params[:start_date], end_date: params[:end_date], start_time: params[:start_time],end_time: params[:end_time], location_id: params[:location_id], is_recurring: params[:is_recurring])
+        pattern = RecurringPattern.where(schedule_window_id: schedule_window.id).first
+        if pattern != nil
+          pattern.destroy
+        end
+        if schedule_window.is_recurring == true
+          RecurringPattern.create(schedule_window_id: schedule_window.id, day_of_week: schedule_window.start_time.wday)
+        end
+        render schedule_window
+      end
+
+
+
+
+
+      desc "Delete an avaliability"
+      params do
+        requires :id, type: String, desc: "ID of avaliablity"
+      end
+      delete "availabilities/:id" do
+        driver = current_driver
+        schedule_window = ScheduleWindow.where(id: params[:id]).where(driver_id: driver.id).first
+        if schedule_window.is_recurring
+          pattern = RecurringPattern.find_by(schedule_window_id: schedule_window.id)
+          pattern.destroy
+        end
+        if schedule_window.destroy != nil
+          return { sucess:true }
+        end
+      end
     end
   end
 end

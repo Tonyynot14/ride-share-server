@@ -9,6 +9,7 @@ module Api
       mount Api::V1::Rides
       mount Api::V1::ScheduleWindows
       mount Api::V1::Locations
+      mount Api::V1::Sessions
 
       add_swagger_documentation(
           api_version: "v1",

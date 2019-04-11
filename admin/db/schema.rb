@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_03_213812) do
+ActiveRecord::Schema.define(version: 2019_04_09_230814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,10 +32,9 @@ ActiveRecord::Schema.define(version: 2019_04_03_213812) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "authentication_token", limit: 30
     t.string "auth_token"
-    t.index ["auth_token"], name: "index_drivers_on_auth_token"
-    t.index ["authentication_token"], name: "index_drivers_on_authentication_token", unique: true
+    t.datetime "token_created_at"
+    t.index ["auth_token", "token_created_at"], name: "index_drivers_on_auth_token_and_token_created_at"
     t.index ["organization_id"], name: "index_drivers_on_organization_id"
   end
 
@@ -120,10 +119,10 @@ ActiveRecord::Schema.define(version: 2019_04_03_213812) do
   create_table "schedule_window_exceptions", force: :cascade do |t|
     t.bigint "schedule_window_id"
     t.boolean "is_canceled"
-    t.date "start_date"
-    t.date "end_date"
-    t.time "start_time"
-    t.time "end_time"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["schedule_window_id"], name: "index_schedule_window_exceptions_on_schedule_window_id"
@@ -131,10 +130,10 @@ ActiveRecord::Schema.define(version: 2019_04_03_213812) do
 
   create_table "schedule_windows", force: :cascade do |t|
     t.bigint "driver_id"
-    t.date "start_date"
-    t.date "end_date"
-    t.time "start_time"
-    t.time "end_time"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.bigint "location_id"
     t.boolean "is_recurring"
     t.index ["driver_id"], name: "index_schedule_windows_on_driver_id"

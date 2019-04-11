@@ -2,28 +2,62 @@ module Api
   module V1
       module SessionHelpers
 
-
-        def user_driver_in?
+        def driver_signed_in?
           current_driver.present?
         end
 
         def require_login!
-          return true if authenticate_token
-          render json: { errors: [ { detail: "Access denied" } ] }, status: 401
+          if authenticate_token != nil
+            return true
+          else
+            return false
+          end
         end
+
+
 
         def current_driver
           @_current_driver ||= authenticate_token
         end
 
+
+        def create_token(email, password)
+          resource = Driver.find_for_database_authentication(:email => email)
+          resource ||= Driver.new
+          if resource.valid_password?(password)
+            auth_token = resource.generate_auth_token
+            render json: { auth_token: auth_token }
+
+          else
+            invalid_login_attempt
+          end
+
+        end
+
+        def destroy_token
+          resource = current_driver
+          resource.invalidate_auth_token
+          render json: {Success: "Logged Out"}
+        end
+
+
+        private
+        def invalid_login_attempt
+          render json: { errors: [ { detail:"Error with your login or password" }]}, status: 401
+        end
+
         private
         def authenticate_token
-          Token.authenticate_with_http_token do |token, options|
-            Driver.find_by(auth_token: token)
-          end
+          token = headers["Token"]
+          return Driver.where(auth_token: token).where("token_created_at >= ?", 1.day.ago).first
         end
-      end
 
+
+
+
+
+
+      end
   end
 end
 
