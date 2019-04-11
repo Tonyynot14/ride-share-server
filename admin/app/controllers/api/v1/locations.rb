@@ -28,7 +28,6 @@ module Api
 
       desc "Return all locations for a given driver"
       params do
-        # requires :id, type: String, desc: "ID of the driver"
       end
       get "locations", root: :location do
         driver = current_driver
@@ -49,7 +48,6 @@ module Api
 
       desc "Create a new location from a driver"
       params do
-        # requires :id, type: String, desc: "ID of driver for who location is for"
       end
       post "locations" do
         driver = current_driver
@@ -100,7 +98,6 @@ module Api
       desc "put a location from a driver"
       params do
         requires :id, type: String, desc: "ID of location"
-        # requires :driver_id, type: String, desc: "ID of location"
       end
       put 'locations/:id' do
         driver = current_driver

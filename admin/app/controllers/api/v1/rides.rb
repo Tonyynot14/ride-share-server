@@ -3,7 +3,6 @@ module Api
     class Rides < Grape::API
       include Api::V1::Defaults
 
-
       helpers SessionHelpers
 
 
@@ -16,7 +15,8 @@ module Api
         params do
           optional :start, type: String, desc: "Start date for rides"
           optional :end, type: String, desc: "End date for rides"
-          optional :status, type: String, desc: "List of status wanted"
+          optional :status, type: String, desc: "String of status wanted"
+          optional :driver_specific, type: Boolean, desc: "Boolean if rides are driver specific"
         end
           get "rides", root: :rides do
             driver = current_driver
@@ -34,6 +34,9 @@ module Api
             rides = Ride.where(organization_id: driver.organization_id).where("pick_up_time >= ?", start_time).where("pick_up_time <= ?", end_time)
             if params[:status] != nil
               rides = rides.where(status: params[:status])
+            end
+            if params[:driver_specific] == true
+              rides = Ride.where(driver_id: driver.id)
             end
             return rides
           end
@@ -53,7 +56,6 @@ module Api
         desc "Accept a ride"
         params do
           requires :ride_id, type: String, desc: "ID of the ride"
-          # requires :driver_id, type: String, desc: "ID of the driver"
         end
         post "rides/:ride_id/accept" do
           driver = current_driver
@@ -66,7 +68,6 @@ module Api
         desc "Complete a ride"
         params do
           requires :ride_id, type: String, desc: "ID of the ride"
-          # requires :driver_id, type: String, desc: "ID of the driver"
         end
         post "rides/:ride_id/complete" do
           ride = Ride.find(permitted_params[:ride_id])
@@ -77,7 +78,6 @@ module Api
       desc "Cancel a ride"
       params do
         requires :ride_id, type: String, desc: "ID of the ride"
-        # requires :driver_id, type: String, desc: "ID of the driver"
       end
       post "rides/:ride_id/cancel" do
         ride = Ride.find(permitted_params[:ride_id])

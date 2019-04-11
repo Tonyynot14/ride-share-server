@@ -37,7 +37,6 @@ module Api
 
       desc "Update a driver with a given id"
       params do
-        # requires :id, type: String, desc: "ID of driver"
       end
       put "drivers" do
         driver = current_driver
@@ -50,7 +49,6 @@ module Api
 
       desc "Delete a driver with a given id"
       params do
-        # requires :id, type: String, desc: "ID of driver"
       end
       delete "drivers" do
         driver = current_driver
