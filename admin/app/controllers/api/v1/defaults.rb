@@ -1,7 +1,9 @@
-module API
+module Api
   module V1
     module Defaults
       extend ActiveSupport::Concern
+
+
 
       included do
         prefix "api"

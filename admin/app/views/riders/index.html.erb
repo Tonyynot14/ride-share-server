@@ -14,6 +14,7 @@
   </tr>
 
   <% @riders.each do |rider| %>
+    <% if rider.organization.name==current_organization.name%>
     <tr>
       <td><%= rider.id %></td>
       <td><%= rider.first_name %></td>
@@ -27,6 +28,7 @@
                       method: :delete,
                       data: { confirm: 'Are you sure?' } %></td>
     </tr>
+    <% end %>
   <% end %>
 </table>
 

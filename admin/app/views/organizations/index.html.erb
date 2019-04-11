@@ -11,6 +11,7 @@
   </tr>
 
   <% @organizations.each do |org| %>
+      <% if org.name==current_organization.name%>
     <tr>
       <td><%= org.id %></td>
       <td><%= org.name %></td>
@@ -20,6 +21,7 @@
                       method: :delete,
                       data: { confirm: 'Are you sure?' } %></td>
     </tr>
+    <% end %>
   <% end %>
 </table>
 

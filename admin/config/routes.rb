@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   devise_for :organizations, controllers: {registrations: "organizations/registrations"}
   devise_for :drivers
   devise_for :riders
-  mount API::Base, at: "/"
+  mount Api::Base, at: "/"
   mount GrapeSwaggerRails::Engine, at: "/documentation"
+
+
 
   get 'welcome/index'
 
@@ -16,5 +18,13 @@ Rails.application.routes.draw do
 
 
   root 'welcome#index'
+
+  namespace :api, :defaults => {:format => :json} do
+    as :driver do
+      post   "v1/sign-in"       => "v1/sessions#create"
+      delete "v1/sign-out"      => "v1/sessions#destroy"
+    end
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
