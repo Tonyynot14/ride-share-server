@@ -53,7 +53,12 @@ module Api
 
       desc "Create an schedule window for a driver"
       params do
-        # requires :id, type: String, desc: "ID of driver"
+        requires :start_date, type: String, desc: "Start date and time of when availability would begin recurring"
+        requires :end_date, type: String, desc: "End date and time of when availability would end recurring"
+        requires :start_time, type: String, desc: "End date and time of availability"
+        requires :start_time, type: String, desc: "Start date and time of availability "
+        requires :is_recurring, type Boolean, desc: "Boolean if availability is recurring or not"
+        requires :location_id, type String, desc: "ID of location"
       end
       post "availabilities" do
         driver = current_driver
