@@ -157,15 +157,12 @@ Save a new availability
 
 ```json
 {
-  "start": "2019-02-14 18:00",
-  "end": "2019-02-14 20:00",
+  "start_date": "2019-02-14 18:00",
+  "end_date": "2019-02-14 20:00",
+  "start_time": "2019-02-14 18:00",
+  "end_time": "2019-02-14 20:00",
   "recurring": true,
-  "location": {
-    "street_address": "123 Pine St.",
-    "city": "Durham",
-    "state": "NC",
-    "zip": "27609"
-  }
+  "location_id": 1
 }
 ```
 
