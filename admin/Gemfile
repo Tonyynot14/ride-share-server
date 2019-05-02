@@ -79,3 +79,5 @@ gem 'grape-active_model_serializers'
 #api documentation
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
+
+gem 'geocoder'
