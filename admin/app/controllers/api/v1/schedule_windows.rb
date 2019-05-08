@@ -57,8 +57,8 @@ module Api
         requires :end_date, type: String, desc: "End date and time of when availability would end recurring"
         requires :start_time, type: String, desc: "End date and time of availability"
         requires :start_time, type: String, desc: "Start date and time of availability "
-        requires :is_recurring, type Boolean, desc: "Boolean if availability is recurring or not"
-        requires :location_id, type String, desc: "ID of location"
+        requires :is_recurring, type: Boolean, desc: "Boolean if availability is recurring or not"
+        requires :location_id, type: String, desc: "ID of location"
       end
       post "availabilities" do
         driver = current_driver
