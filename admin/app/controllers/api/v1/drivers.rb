@@ -6,9 +6,9 @@ module Api
       helpers SessionHelpers
 
 
-      before do
-        error!('Unauthorized', 401) unless require_login!
-      end
+      #before do
+      #  error!('Unauthorized', 401) unless require_login!
+      #end
 
 
 
@@ -16,6 +16,30 @@ module Api
     # get "/drivers/all", root: :driver do
     #   Driver.all
     # end
+
+    #Create a driver by
+
+    desc 'Create a Driver'
+      params do
+        requires :email , type:String
+        requires :password, type:String
+        requires :first_name, type: String
+        requires :last_name, type: String
+        requires :phone, type: String
+        requires :organization_id, type: Integer
+      end
+      post "drivers(json)" do
+        driver = Driver.new({organization_id: params[:organization_id], email: params[:email],password: params[:password],first_name: params[:first_name],last_name: params[:last_name],phone: params[:phone]})
+        if driver.save
+          status 200
+          driver
+        #Return bad request error code and erroe
+        else
+          status 400
+          render json: driver.errors
+
+        end
+      end
 
 
 

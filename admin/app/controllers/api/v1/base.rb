@@ -10,7 +10,7 @@ module Api
       mount Api::V1::ScheduleWindows
       mount Api::V1::Locations
       mount Api::V1::Sessions
-      mount Api::V1::User
+    
 
       add_swagger_documentation(
           api_version: "v1",
