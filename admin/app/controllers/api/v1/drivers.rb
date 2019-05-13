@@ -57,6 +57,7 @@ module Api
         end
       end
 
+      #Method to create application for user, requires information for application and updates state of driver to pending
       desc "Create Application from App"
       params do
         requires :car_make, type: String, desc: " Car Manufactor of Driver"
@@ -75,6 +76,7 @@ module Api
                         car_plate: params[:car_plate], insurance_provider: params[:insurance_provider],
                         insurance_start: params[:insurance_start], insurance_stop: params[:insurance_stop],
                         application_state: "pending")
+          render json: driver
 
       end
 
