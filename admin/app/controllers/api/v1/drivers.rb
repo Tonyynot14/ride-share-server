@@ -5,14 +5,7 @@ module Api
 
       helpers SessionHelpers
 
-
-
-
-
-
-
-
-      #Create a driver by suppling json with organization_id,email,password,first_name
+      #Create a driver by suppling json with required params organization_id,email,password,first_name
       #last_name, and phone
 
       desc "Create a Driver"
