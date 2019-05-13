@@ -16,7 +16,7 @@ module Api
         params do
           optional :start, type: String, desc: "Start date for rides"
           optional :end, type: String, desc: "End date for rides"
-          optional :status, type: Array, desc: "String of status wanted"
+          optional :status, type: Array[String], desc: "String of status wanted"
           optional :driver_specific, type: Boolean, desc: "Boolean if rides are driver specific"
           optional :radius, type: Boolean, desc: "Boolean if rides are within radius"
         end
@@ -60,6 +60,7 @@ module Api
 
 
             return rides
+
           end
 
 
