@@ -80,6 +80,34 @@ module Api
 
       end
 
+      #Method to get application info for logged in user, currently just the information in application
+      desc "Get Application Info"
+      params do
+      end
+      get "drivers/application" do
+        driver = current_driver
+
+        @application = Array.new
+
+
+          @application << {
+            :id => driver.id,
+            :car_make => driver.car_make,
+            :car_model => driver.car_model,
+            :car_year => driver.car_year,
+            :car_color => driver.car_color,
+            :car_plate => driver.car_plate,
+            :insurance_provider =>driver.insurance_provider ,
+            :insurance_start =>driver.insurance_start,
+            :insurance_stop => driver.insurance_stop,
+            :application_state  => driver.application_state
+
+          }
+
+
+        render :json => @application
+      end
+
 
     end
   end
